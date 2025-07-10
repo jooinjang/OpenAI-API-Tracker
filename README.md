@@ -2,18 +2,14 @@
 
 OpenAI API 사용량을 시각화하고 분석하는 Streamlit 애플리케이션입니다.
 
+![OpenAI API Usage Tracker](assets/sample_image.png)
+
 ## 주요 기능
 
 - OpenAI API 사용량 업로드 및 분석
 - 사용자별 총 사용량 조회
 - 날짜별/모델별 사용량 시각화
 - 인터랙티브 차트 및 그래프
-
-## 스크린샷
-
-![OpenAI API Usage Tracker](assets/sample_image.png)
-
-*애플리케이션 인터페이스 예시*
 
 ## 2025년 구조 지원
 

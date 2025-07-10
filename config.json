@@ -1,0 +1,5 @@
+{
+    "USERINFO_PATH": "userinfo.json",
+    "PORT": 51075,
+    "DEBUG": false
+}

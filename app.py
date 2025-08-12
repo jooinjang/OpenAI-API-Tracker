@@ -32,66 +32,71 @@ from utils import (
     reset_project_budgets
 )
 
+# Import Apple design system
+from components_design import load_apple_design_system, AppleComponents, AppleCharts, AppleForms, safe_plotly_chart, safe_dataframe, EnhancedComponents
+
 
 st.set_page_config(layout="wide", page_title="OpenAI Usage Tracker")
+
+# Load Apple design system
+load_apple_design_system()
 
 # 앱 초기화 시 저장된 예산 로드
 if 'project_budgets' not in st.session_state:
     st.session_state.project_budgets = load_project_budgets()
 
-# 사이드바 네비게이션
+# Enhanced Sidebar Navigation
 st.sidebar.title("📊 OpenAI Usage Tracker")
+st.sidebar.markdown('<div class="sidebar-section">', unsafe_allow_html=True)
 
-# 통합 파일 업로드 섹션
-st.sidebar.subheader("📁 데이터 업로드")
+# User Data Upload - Apple Style
+with st.sidebar:
+    uploaded_user_file = AppleComponents.render_sidebar_file_upload(
+        title="사용자별 데이터",
+        description="User 기준 JSON 파일을 선택하세요",
+        file_type="json",
+        key="user_data_upload",
+        icon="👤"
+    )
 
-# 사용자별 사용량 데이터 업로드
-st.sidebar.write("**사용자별 사용량 데이터**")
-uploaded_user_file = st.sidebar.file_uploader(
-    "사용자별 사용량 JSON 파일",
-    type="json",
-    help="OpenAI Platform - Usage - Cost 탭에서 User 기준으로 다운받은 파일",
-    key="user_data_upload"
-)
-
+# Compact status messages for user data
 if uploaded_user_file is not None:
     try:
         st.session_state.uploaded_data = json.load(uploaded_user_file)
-        st.sidebar.success("✅ 사용자별 데이터 업로드 완료")
+        with st.sidebar:
+            EnhancedComponents.render_compact_sidebar_status("사용자별 데이터 업로드 완료", "success")
     except json.JSONDecodeError:
-        st.sidebar.error("❌ JSON 파일 형식이 올바르지 않습니다.")
+        with st.sidebar:
+            EnhancedComponents.render_compact_sidebar_status("JSON 형식 오류", "error")
     except Exception as e:
-        st.sidebar.error(f"❌ 파일 처리 중 오류: {str(e)}")
+        with st.sidebar:
+            EnhancedComponents.render_compact_sidebar_status(f"파일 오류: {str(e)[:20]}...", "error")
 
-# 프로젝트별 사용량 데이터 업로드
-st.sidebar.write("**프로젝트별 사용량 데이터**")
-uploaded_project_file = st.sidebar.file_uploader(
-    "프로젝트별 사용량 JSON 파일",
-    type="json",
-    help="OpenAI Platform - Usage - Cost 탭에서 Project 기준으로 다운받은 파일",
-    key="project_data_upload"
-)
+# Project Data Upload - Apple Style
+with st.sidebar:
+    uploaded_project_file = AppleComponents.render_sidebar_file_upload(
+        title="프로젝트별 데이터", 
+        description="Project 기준 JSON 파일을 선택하세요",
+        file_type="json",
+        key="project_data_upload",
+        icon="🏗️"
+    )
 
+# Compact status messages for project data
 if uploaded_project_file is not None:
     try:
         st.session_state.project_usage_data = json.load(uploaded_project_file)
-        st.sidebar.success("✅ 프로젝트별 데이터 업로드 완료")
+        with st.sidebar:
+            EnhancedComponents.render_compact_sidebar_status("프로젝트별 데이터 업로드 완료", "success")
     except json.JSONDecodeError:
-        st.sidebar.error("❌ JSON 파일 형식이 올바르지 않습니다.")
+        with st.sidebar:
+            EnhancedComponents.render_compact_sidebar_status("JSON 형식 오류", "error")
     except Exception as e:
-        st.sidebar.error(f"❌ 파일 처리 중 오류: {str(e)}")
+        with st.sidebar:
+            EnhancedComponents.render_compact_sidebar_status(f"파일 오류: {str(e)[:20]}...", "error")
 
-# 업로드 상태 표시
-st.sidebar.write("**업로드 상태**")
-if hasattr(st.session_state, 'uploaded_data') and st.session_state.uploaded_data is not None:
-    st.sidebar.info("🟢 사용자별 데이터: 업로드됨")
-else:
-    st.sidebar.info("🔴 사용자별 데이터: 없음")
+st.sidebar.markdown('</div>', unsafe_allow_html=True)
 
-if hasattr(st.session_state, 'project_usage_data') and st.session_state.project_usage_data is not None:
-    st.sidebar.info("🟢 프로젝트별 데이터: 업로드됨")
-else:
-    st.sidebar.info("🔴 프로젝트별 데이터: 없음")
 
 st.sidebar.markdown("---")
 
@@ -100,7 +105,14 @@ page = st.sidebar.selectbox(
     ["📈 전체 사용량", "👤 사용자별 분석", "🔑 API 키 관리", "💰 사용 한도 관리"]
 )
 
-st.title("OpenAI API Usage Visualizer")
+# Enhanced main title with dark theme support
+st.markdown("""
+<div style="color: var(--text-primary); margin-bottom: 2rem;">
+    <h1 style="color: inherit; font-weight: 700; font-size: 2.5rem; margin-bottom: 0.5rem;">
+        OpenAI API Usage Visualizer
+    </h1>
+</div>
+""", unsafe_allow_html=True)
 
 # 세션 상태 초기화
 if "userinfo" not in st.session_state:
@@ -113,9 +125,16 @@ if "project_usage_data" not in st.session_state:
 # 전체 사용량 페이지
 if page == "📈 전체 사용량":
     if st.session_state.uploaded_data is None:
-        st.warning("먼저 왼쪽 사이드바에서 사용자별 사용량 데이터를 업로드해주세요.")
+        AppleComponents.render_apple_alert(
+            "먼저 왼쪽 사이드바에서 사용자별 사용량 데이터를 업로드해주세요.",
+            "warning"
+        )
     else:
-        st.header("📈 전체 사용량")
+        # Apple-style section header
+        AppleComponents.render_section_header(
+            "전체 사용량 분석",
+            "OpenAI API 사용량 전체 분석 및 시각화 대시보드"
+        )
         
         if not st.session_state.userinfo:
             build_userinfo()
@@ -128,10 +147,22 @@ if page == "📈 전체 사용량":
         data_ = data  # 전체 data 객체 전달
         
         total_cost = get_total_cost(data_)[0]
-        st.metric("💰 총 비용", f"${total_cost:.4f}")
         
+        # Process user data first
         grouped_data = group_by_userID(data_)
         userID = grouped_data.keys()  # 사용자 ID
+        
+        # Apple-style metrics display
+        total_requests = sum(len(data["data"]) for data in data_.values() if "data" in data)
+        active_users = len([uid for uid in userID if uid is not None])
+        
+        metrics = [
+            {"value": f"${total_cost:.2f}", "label": "총 비용", "icon": "💰", "change": None, "change_type": "neutral"},
+            {"value": f"{total_requests:,}", "label": "API 요청", "icon": "⚡", "change": None, "change_type": "neutral"},
+            {"value": f"{active_users}", "label": "활성 사용자", "icon": "👥", "change": None, "change_type": "neutral"},
+            {"value": "100%", "label": "시스템 상태", "icon": "✅", "change": None, "change_type": "positive"}
+        ]
+        AppleComponents.render_apple_metrics(metrics, columns=4)
         total_usage, cost_transition = [], []
         names = []
         
@@ -161,22 +192,37 @@ if page == "📈 전체 사용량":
             }
         )
 
-        st.subheader("사용자별 사용량 요약")
+        # Apple-style data table
+        def render_user_summary():
+            # 데이터프레임을 더 읽기 쉽게 포맷팅
+            display_df = df.copy()
+            display_df["Total Usage(USD)"] = display_df["Total Usage(USD)"].apply(lambda x: f"${x:.4f}")
+            
+            # 주요 컬럼만 표시
+            display_columns = ["Username", "User ID", "Total Usage(USD)"]
+            safe_dataframe(display_df[display_columns], use_container_width=True)
         
-        # 데이터프레임을 더 읽기 쉽게 포맷팅
-        display_df = df.copy()
-        display_df["Total Usage(USD)"] = display_df["Total Usage(USD)"].apply(lambda x: f"${x:.4f}")
-        
-        # 주요 컬럼만 표시
-        display_columns = ["Username", "User ID", "Total Usage(USD)"]
-        st.dataframe(display_df[display_columns])
+        # Apple-style card layout
+        AppleComponents.render_apple_card(
+            "사용자별 사용량 분석",
+            render_user_summary,
+            subtitle="모든 사용자의 API 사용량 및 비용 정보",
+            icon="👥"
+        )
 
 # 사용자별 분석 페이지
 elif page == "👤 사용자별 분석":
     if st.session_state.uploaded_data is None:
-        st.warning("먼저 '📁 파일 업로드' 페이지에서 데이터를 업로드해주세요.")
+        AppleComponents.render_apple_alert(
+            "먼저 왼쪽 사이드바에서 사용자별 사용량 데이터를 업로드해주세요.",
+            "warning"
+        )
     else:
-        st.header("👤 사용자별 분석")
+        # Apple-style section header
+        AppleComponents.render_section_header(
+            "사용자별 분석",
+            "개별 사용자의 API 사용 패턴 및 상세 분석"
+        )
         
         if not st.session_state.userinfo:
             build_userinfo()
@@ -272,12 +318,21 @@ elif page == "👤 사용자별 분석":
         fig.update_layout(barmode="stack")
 
         # Streamlit 앱에 그래프 표시
-        st.plotly_chart(fig, use_container_width=True)
+        safe_plotly_chart(fig, use_container_width=True)
 
 # API 키 관리 페이지
 elif page == "🔑 API 키 관리":
-    st.header("🔑 API 키 관리")
-    st.info("⚠️ 이 기능은 관리자 권한이 필요합니다. 조직의 API 키를 관리할 수 있습니다.")
+    # Enhanced page header
+    EnhancedComponents.render_page_header(
+        "API 키 관리",
+        "조직의 OpenAI API 키 관리 및 모니터링"
+    )
+    
+    EnhancedComponents.render_custom_alert(
+        "이 기능은 관리자 권한이 필요합니다. 조직의 API 키를 관리할 수 있습니다.",
+        alert_type="warning",
+        title="관리자 권한 필요"
+    )
     
     # 관리자 API 키 입력 폼
     with st.expander("🔐 관리자 인증", expanded=True):
@@ -290,25 +345,25 @@ elif page == "🔑 API 키 관리":
         
         # 조직 ID는 환경변수에서 가져옴
         if openai_org_id:
-            st.info(f"📋 조직 ID: {openai_org_id[:15]}...")
+            EnhancedComponents.render_inline_alert(f"조직 ID: {openai_org_id[:15]}...", "info")
         else:
-            st.error("❌ 환경변수에 OPENAI_ORG_KEY가 설정되지 않았습니다.")
+            EnhancedComponents.render_inline_alert("환경변수에 OPENAI_ORG_KEY가 설정되지 않았습니다", "error")
         
         # 인증 상태 표시
         if admin_api_key and openai_org_id:
-            st.success("✅ 관리자 인증 정보가 준비되었습니다.")
+            EnhancedComponents.render_inline_alert("관리자 인증 정보가 준비되었습니다", "success")
         elif admin_api_key and not openai_org_id:
-            st.error("❌ 환경변수 OPENAI_ORG_KEY를 설정해주세요.")
+            EnhancedComponents.render_inline_alert("환경변수 OPENAI_ORG_KEY를 설정해주세요", "error")
         elif not admin_api_key and openai_org_id:
-            st.warning("⚠️ 관리자 API 키를 입력해주세요.")
+            EnhancedComponents.render_inline_alert("관리자 API 키를 입력해주세요", "warning")
         else:
-            st.error("❌ 관리자 API 키와 조직 ID가 모두 필요합니다.")
+            EnhancedComponents.render_inline_alert("관리자 API 키와 조직 ID가 모두 필요합니다", "error")
     
     # 인증 정보가 모두 준비된 경우에만 탭 표시
     if admin_api_key and openai_org_id:
         tab1, tab2, tab3 = st.tabs(["📋 프로젝트 목록", "🔍 프로젝트별 API 키", "👥 조직 사용자"])
     else:
-        st.info("👆 관리자 API 키를 먼저 입력해주세요.")
+        EnhancedComponents.render_custom_alert("관리자 API 키를 먼저 입력해주세요", "info", compact=True)
     
     # 탭 내용을 조건부로 표시
     if admin_api_key and openai_org_id:
@@ -373,7 +428,7 @@ elif page == "🔑 API 키 관리":
                     
                     col1, col2 = st.columns([3, 1])
                     with col1:
-                        st.info(f"📋 선택된 프로젝트: **{selected_project_name}** (`{selected_project_id}`)")
+                        EnhancedComponents.render_inline_alert(f"선택된 프로젝트: {selected_project_name} ({selected_project_id[:20]}...)", "info")
                     with col2:
                         if st.button("🔄 API 키 새로고침"):
                             with st.spinner("API 키 정보를 가져오는 중..."):
@@ -386,15 +441,14 @@ elif page == "🔑 API 키 관리":
                                 else:
                                     st.error("❌ API 키 목록을 가져오는데 실패했습니다.")
                     
-                    # API 키 목록 표시
+                    # Enhanced API 키 목록 표시 with centered layout
                     if (hasattr(st.session_state, 'selected_project_api_keys') and 
                         st.session_state.selected_project_api_keys and
                         hasattr(st.session_state, 'selected_project_name') and
                         st.session_state.selected_project_name == selected_project_name):
                         
-                        st.subheader("🔑 API 키 목록")
+                        # Prepare API keys data
                         api_keys_data = []
-                        
                         for api_key in st.session_state.selected_project_api_keys:
                             api_keys_data.append({
                                 "API 키 ID": api_key.get("id", "N/A"),
@@ -405,18 +459,24 @@ elif page == "🔑 API 키 관리":
                             })
                         
                         api_keys_df = pd.DataFrame(api_keys_data)
-                        st.dataframe(api_keys_df)
                         
-                        # API 키 통계
-                        col1, col2, col3 = st.columns(3)
-                        with col1:
-                            st.metric("🔑 API 키 개수", len(api_keys_data))
-                        with col2:
-                            unique_owners = len(set([key.get("owner", {}).get("email") for key in st.session_state.selected_project_api_keys if isinstance(key.get("owner"), dict) and key.get("owner", {}).get("email")]))
-                            st.metric("👥 고유 소유자", unique_owners)
-                        with col3:
-                            named_keys = len([key for key in st.session_state.selected_project_api_keys if key.get("name")])
-                            st.metric("📝 이름이 있는 키", named_keys)
+                        # Render API keys table in centered container
+                        def render_api_keys_content():
+                            EnhancedComponents.render_enhanced_table(
+                                api_keys_df,
+                                title="🔑 API 키 목록",
+                                searchable=True
+                            )
+                            
+                            # API 키 통계 in compact layout
+                            metrics = [
+                                {"value": len(api_keys_data), "label": "API 키 개수"},
+                                {"value": len(set([key.get("owner", {}).get("email") for key in st.session_state.selected_project_api_keys if isinstance(key.get("owner"), dict) and key.get("owner", {}).get("email")])), "label": "고유 소유자"},
+                                {"value": f"{selected_project_name}", "label": "프로젝트"}
+                            ]
+                            EnhancedComponents.render_metric_cards(metrics, columns=3)
+                        
+                        EnhancedComponents.render_centered_container(render_api_keys_content)
                     else:
                         st.info("API 키 정보를 보려면 '🔄 API 키 새로고침' 버튼을 클릭하세요.")
             else:
@@ -467,8 +527,17 @@ elif page == "🔑 API 키 관리":
 
 # 사용 한도 관리 페이지
 elif page == "💰 사용 한도 관리":
-    st.header("💰 사용 한도 관리")
-    st.info("⚠️ 이 기능은 관리자 권한이 필요합니다. 프로젝트별 사용 한도를 설정하고 모니터링할 수 있습니다.")
+    # Enhanced page header
+    EnhancedComponents.render_page_header(
+        "사용 한도 관리",
+        "프로젝트별 예산 설정 및 사용량 모니터링"
+    )
+    
+    EnhancedComponents.render_custom_alert(
+        "이 기능은 관리자 권한이 필요합니다. 프로젝트별 사용 한도를 설정하고 모니터링할 수 있습니다.",
+        alert_type="info",
+        title="사용 한도 관리"
+    )
     
     # 관리자 API 키 입력 폼
     with st.expander("🔐 관리자 인증", expanded=True):
@@ -500,7 +569,7 @@ elif page == "💰 사용 한도 관리":
     if admin_api_key and openai_org_id:
         tab1, tab2, tab3, tab4 = st.tabs(["🎯 프로젝트별 예산 설정", "📊 일괄 예산 설정", "📈 예산 모니터링", "⚠️ 초과 사용 관리"])
     else:
-        st.info("👆 관리자 API 키를 먼저 입력해주세요.")
+        EnhancedComponents.render_custom_alert("관리자 API 키를 먼저 입력해주세요", "info", compact=True)
     
     # 탭 내용을 조건부로 표시
     if admin_api_key and openai_org_id:

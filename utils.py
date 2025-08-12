@@ -141,13 +141,20 @@ def get_total_cost(data):
     return total_cost, cost_by_date
 
 
-def build_userinfo():
+def build_userinfo(admin_api_key=None):
     """OpenAI 조직의 사용자 정보를 가져와 JSON 파일로 저장합니다."""
+    # 관리자 키가 제공되면 사용, 없으면 기본 환경변수 사용
+    api_key = admin_api_key or openai_api_key
+    org_id = openai_org_id  # Organization ID는 환경변수 사용
+    
     headers = {
-        "Authorization": f"Bearer {openai_api_key}",
-        "OpenAI-Organization": openai_org_id,
+        "Authorization": f"Bearer {api_key}",
         "Content-Type": "application/json",
     }
+    
+    # Organization ID가 있을 때만 헤더에 추가
+    if org_id:
+        headers["OpenAI-Organization"] = org_id
 
     try:
         # OpenAI API v1 엔드포인트 사용 (더 많은 사용자 가져오기)
@@ -644,6 +651,225 @@ def reset_project_budgets(filename="project_budgets.json"):
     except Exception as e:
         print(f"❌ 예산 파일 삭제 실패: {e}")
         return False
+
+
+def get_project_rate_limits(project_id, admin_api_key=None):
+    """특정 프로젝트의 Rate Limit 정보를 가져옵니다."""
+    # 관리자 키가 제공되면 사용, 없으면 기본 환경변수 사용
+    api_key = admin_api_key or openai_api_key
+    org_id = openai_org_id
+    
+    headers = {
+        "Authorization": f"Bearer {api_key}",
+        "OpenAI-Organization": org_id,
+        "Content-Type": "application/json",
+    }
+
+    try:
+        url = f"https://api.openai.com/v1/organization/projects/{project_id}/rate_limits"
+        print(f"🔍 Rate Limit API 요청 시도: {url}")
+        response = requests.get(url, headers=headers, timeout=30)
+        
+        # HTTP 상태 코드 확인
+        print(f"📊 Rate Limit API 응답 상태: {response.status_code}")
+        if response.status_code != 200:
+            print(f"❌ Project Rate Limits 요청 실패: HTTP {response.status_code}")
+            print(f"응답 헤더: {dict(response.headers)}")
+            print(f"응답 내용: {response.text}")
+            return None
+        
+        # JSON 응답 파싱
+        response_data = response.json()
+        all_data = response_data.get("data", [])
+        
+        print(f"✅ Rate Limit 응답 받음: {len(all_data)}개 항목")
+        return all_data
+        
+    except requests.exceptions.RequestException as e:
+        print(f"❌ 네트워크 오류가 발생했습니다: {e}")
+        return None
+    except json.JSONDecodeError as e:
+        print(f"❌ JSON 파싱 오류가 발생했습니다: {e}")
+        print(f"응답 내용: {response.text}")
+        return None
+    except Exception as e:
+        print(f"❌ 예상치 못한 오류가 발생했습니다: {e}")
+        return None
+
+
+def update_project_rate_limit(project_id, rate_limit_id, max_requests_per_1_minute, admin_api_key=None):
+    """특정 프로젝트의 Rate Limit을 업데이트합니다."""
+    # 관리자 키가 제공되면 사용, 없으면 기본 환경변수 사용
+    api_key = admin_api_key or openai_api_key
+    org_id = openai_org_id
+    
+    headers = {
+        "Authorization": f"Bearer {api_key}",
+        "OpenAI-Organization": org_id,
+        "Content-Type": "application/json",
+    }
+
+    data = {
+        "max_requests_per_1_minute": max_requests_per_1_minute
+    }
+
+    try:
+        url = f"https://api.openai.com/v1/organization/projects/{project_id}/rate_limits/{rate_limit_id}"
+        response = requests.post(url, headers=headers, json=data, timeout=30)
+        
+        # HTTP 상태 코드 확인
+        if response.status_code == 200:
+            print(f"✅ 프로젝트 {project_id}의 Rate Limit이 성공적으로 업데이트되었습니다.")
+            return response.json()
+        else:
+            print(f"❌ Rate Limit 업데이트 실패: HTTP {response.status_code}")
+            print(f"응답 내용: {response.text}")
+            
+            # 권한 오류인 경우 특별한 예외 발생
+            if response.status_code == 401:
+                try:
+                    error_data = response.json()
+                    error_message = error_data.get("error", {}).get("message", "권한이 없습니다.")
+                    if "api.management.write" in error_message:
+                        raise ValueError(f"API 키 권한 오류: Rate Limit 수정을 위해서는 'api.management.write' 권한이 필요합니다. OpenAI 조직 설정에서 API 키 권한을 확인해주세요.")
+                    else:
+                        raise ValueError(f"권한 오류: {error_message}")
+                except (json.JSONDecodeError, KeyError):
+                    raise ValueError("API 키 권한이 부족합니다. 관리자 권한이 있는 API 키를 사용해주세요.")
+            else:
+                raise ValueError(f"Rate Limit 업데이트 실패: HTTP {response.status_code}")
+            
+            return None
+            
+    except requests.exceptions.RequestException as e:
+        print(f"네트워크 오류가 발생했습니다: {e}")
+        return None
+    except json.JSONDecodeError as e:
+        print(f"JSON 파싱 오류가 발생했습니다: {e}")
+        print(f"응답 내용: {response.text}")
+        return None
+    except Exception as e:
+        print(f"예상치 못한 오류가 발생했습니다: {e}")
+        return None
+
+
+def get_all_projects_rate_limits(admin_api_key=None):
+    """모든 프로젝트의 Rate Limit 정보를 가져옵니다."""
+    projects = list_organization_projects(admin_api_key)
+    if not projects:
+        print("❌ 프로젝트 목록을 가져올 수 없습니다.")
+        return None
+    
+    print(f"📋 총 {len(projects)}개의 프로젝트에 대해 Rate Limit을 조회합니다.")
+    all_rate_limits = {}
+    success_count = 0
+    
+    for i, project in enumerate(projects):
+        project_id = project["id"]
+        project_name = project["name"]
+        
+        print(f"🔄 ({i+1}/{len(projects)}) {project_name} ({project_id}) Rate Limit 조회 중...")
+        
+        try:
+            rate_limits = get_project_rate_limits(project_id, admin_api_key)
+            if rate_limits is not None:
+                # 필요한 필드만 필터링해서 응답 크기 최적화
+                filtered_rate_limits = []
+                for limit in rate_limits:
+                    filtered_limit = {
+                        "id": limit.get("id", ""),
+                        "model": limit.get("model", ""),
+                        "max_requests_per_1_minute": limit.get("max_requests_per_1_minute", 0),
+                        "max_tokens_per_1_minute": limit.get("max_tokens_per_1_minute", 0),
+                    }
+                    filtered_rate_limits.append(filtered_limit)
+                
+                all_rate_limits[project_id] = {
+                    "project_name": project_name,
+                    "rate_limits": filtered_rate_limits
+                }
+                success_count += 1
+                print(f"✅ {project_name}: {len(filtered_rate_limits)}개 Rate Limit 조회 성공 (필터링됨)")
+            else:
+                print(f"⚠️ {project_name}: Rate Limit 정보 없음")
+        except Exception as e:
+            print(f"❌ {project_name}: Rate Limit 조회 실패 - {e}")
+    
+    print(f"📊 Rate Limit 조회 완료: {success_count}/{len(projects)} 프로젝트 성공")
+    return all_rate_limits
+
+
+def save_rate_limit_template(template_data, filename="rate_limit_template.json"):
+    """Rate Limit 템플릿을 JSON 파일로 저장합니다."""
+    try:
+        with open(filename, 'w', encoding='utf-8') as f:
+            json.dump(template_data, f, ensure_ascii=False, indent=2)
+        print(f"✅ Rate Limit 템플릿이 {filename}에 저장되었습니다.")
+        return True
+    except Exception as e:
+        print(f"❌ 템플릿 저장 실패: {e}")
+        return False
+
+
+def load_rate_limit_template(filename="rate_limit_template.json"):
+    """JSON 파일에서 Rate Limit 템플릿을 로드합니다."""
+    try:
+        if os.path.exists(filename):
+            with open(filename, 'r', encoding='utf-8') as f:
+                template = json.load(f)
+            print(f"✅ Rate Limit 템플릿이 {filename}에서 로드되었습니다.")
+            return template
+        else:
+            print(f"⚠️ 템플릿 파일 {filename}이 존재하지 않습니다.")
+            return None
+    except Exception as e:
+        print(f"❌ 템플릿 로드 실패: {e}")
+        return None
+
+
+def apply_rate_limit_template_to_project(project_id, template_data, admin_api_key=None):
+    """특정 프로젝트에 Rate Limit 템플릿을 적용합니다."""
+    results = []
+    
+    # 현재 프로젝트의 Rate Limit 정보 가져오기
+    current_limits = get_project_rate_limits(project_id, admin_api_key)
+    if not current_limits:
+        return {"success": False, "message": "현재 Rate Limit 정보를 가져올 수 없습니다."}
+    
+    # 템플릿의 각 Rate Limit을 적용
+    for template_limit in template_data:
+        # 매칭되는 Rate Limit 찾기 (model 기준)
+        matching_limit = None
+        for current_limit in current_limits:
+            if current_limit.get("model") == template_limit.get("model"):
+                matching_limit = current_limit
+                break
+        
+        if matching_limit:
+            rate_limit_id = matching_limit["id"]
+            new_value = template_limit["max_requests_per_1_minute"]
+            
+            result = update_project_rate_limit(
+                project_id, 
+                rate_limit_id, 
+                new_value, 
+                admin_api_key
+            )
+            
+            results.append({
+                "model": template_limit.get("model"),
+                "rate_limit_id": rate_limit_id,
+                "success": result is not None,
+                "new_value": new_value
+            })
+        else:
+            results.append({
+                "model": template_limit.get("model"),
+                "success": False,
+                "message": "매칭되는 Rate Limit을 찾을 수 없습니다."
+            })
+    
+    return {"success": True, "results": results}
 
 
 # 함수 테스트

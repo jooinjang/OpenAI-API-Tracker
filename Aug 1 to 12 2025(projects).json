@@ -1,0 +1,617 @@
+{
+  "object": "list",
+  "data": [
+    {
+      "object": "bucket",
+      "start_time": 1754006400,
+      "end_time": 1754092800,
+      "results": [
+        {
+          "object": "organization.costs.result",
+          "amount": {
+            "value": 0.6348768,
+            "currency": "usd"
+          },
+          "line_item": null,
+          "project_id": "proj_poh94GXsRmpuKGYN8fErDMgi",
+          "organization_id": "org-o09O7oQ76B4MatlTHXLjOOYz",
+          "project_name": "Sugyeong Eo",
+          "organization_name": "Korea University"
+        },
+        {
+          "object": "organization.costs.result",
+          "amount": {
+            "value": 1.048818,
+            "currency": "usd"
+          },
+          "line_item": null,
+          "project_id": "proj_9AdrrgJKc2vqJlZq3HU7gsTD",
+          "organization_id": "org-o09O7oQ76B4MatlTHXLjOOYz",
+          "project_name": "HIAI",
+          "organization_name": "Korea University"
+        }
+      ],
+      "start_time_iso": "2025-08-01T00:00:00+00:00",
+      "end_time_iso": "2025-08-02T00:00:00+00:00"
+    },
+    {
+      "object": "bucket",
+      "start_time": 1754092800,
+      "end_time": 1754179200,
+      "results": [
+        {
+          "object": "organization.costs.result",
+          "amount": {
+            "value": 0.12011,
+            "currency": "usd"
+          },
+          "line_item": null,
+          "project_id": "proj_skh9XiDEY8RjXOUnpNlRTC12",
+          "organization_id": "org-o09O7oQ76B4MatlTHXLjOOYz",
+          "project_name": "Uracle Embedding",
+          "organization_name": "Korea University"
+        },
+        {
+          "object": "organization.costs.result",
+          "amount": {
+            "value": 0.011359999999999999,
+            "currency": "usd"
+          },
+          "line_item": null,
+          "project_id": "proj_YzS04oYTOxwKura8SHWkkX3R",
+          "organization_id": "org-o09O7oQ76B4MatlTHXLjOOYz",
+          "project_name": "KULLM-RAG",
+          "organization_name": "Korea University"
+        },
+        {
+          "object": "organization.costs.result",
+          "amount": {
+            "value": 0.0009,
+            "currency": "usd"
+          },
+          "line_item": null,
+          "project_id": "proj_9AdrrgJKc2vqJlZq3HU7gsTD",
+          "organization_id": "org-o09O7oQ76B4MatlTHXLjOOYz",
+          "project_name": "HIAI",
+          "organization_name": "Korea University"
+        }
+      ],
+      "start_time_iso": "2025-08-02T00:00:00+00:00",
+      "end_time_iso": "2025-08-03T00:00:00+00:00"
+    },
+    {
+      "object": "bucket",
+      "start_time": 1754179200,
+      "end_time": 1754265600,
+      "results": [
+        {
+          "object": "organization.costs.result",
+          "amount": {
+            "value": 0.013777999999999999,
+            "currency": "usd"
+          },
+          "line_item": null,
+          "project_id": "proj_YzS04oYTOxwKura8SHWkkX3R",
+          "organization_id": "org-o09O7oQ76B4MatlTHXLjOOYz",
+          "project_name": "KULLM-RAG",
+          "organization_name": "Korea University"
+        },
+        {
+          "object": "organization.costs.result",
+          "amount": {
+            "value": 1.8232499999999998,
+            "currency": "usd"
+          },
+          "line_item": null,
+          "project_id": "proj_9AdrrgJKc2vqJlZq3HU7gsTD",
+          "organization_id": "org-o09O7oQ76B4MatlTHXLjOOYz",
+          "project_name": "HIAI",
+          "organization_name": "Korea University"
+        }
+      ],
+      "start_time_iso": "2025-08-03T00:00:00+00:00",
+      "end_time_iso": "2025-08-04T00:00:00+00:00"
+    },
+    {
+      "object": "bucket",
+      "start_time": 1754265600,
+      "end_time": 1754352000,
+      "results": [
+        {
+          "object": "organization.costs.result",
+          "amount": {
+            "value": 0.0034000000000000002,
+            "currency": "usd"
+          },
+          "line_item": null,
+          "project_id": "proj_CIvqhKIdpvn95jz1KmvgUwYQ",
+          "organization_id": "org-o09O7oQ76B4MatlTHXLjOOYz",
+          "project_name": "Seungyoon Lee",
+          "organization_name": "Korea University"
+        },
+        {
+          "object": "organization.costs.result",
+          "amount": {
+            "value": 0.101674,
+            "currency": "usd"
+          },
+          "line_item": null,
+          "project_id": "proj_YzS04oYTOxwKura8SHWkkX3R",
+          "organization_id": "org-o09O7oQ76B4MatlTHXLjOOYz",
+          "project_name": "KULLM-RAG",
+          "organization_name": "Korea University"
+        },
+        {
+          "object": "organization.costs.result",
+          "amount": {
+            "value": 2.7285110999999995,
+            "currency": "usd"
+          },
+          "line_item": null,
+          "project_id": "proj_9AdrrgJKc2vqJlZq3HU7gsTD",
+          "organization_id": "org-o09O7oQ76B4MatlTHXLjOOYz",
+          "project_name": "HIAI",
+          "organization_name": "Korea University"
+        },
+        {
+          "object": "organization.costs.result",
+          "amount": {
+            "value": 0.010500900000000002,
+            "currency": "usd"
+          },
+          "line_item": null,
+          "project_id": "proj_EUvQcYDfebHpDFvYEptMvQny",
+          "organization_id": "org-o09O7oQ76B4MatlTHXLjOOYz",
+          "project_name": "Jungseob Lee",
+          "organization_name": "Korea University"
+        },
+        {
+          "object": "organization.costs.result",
+          "amount": {
+            "value": 0.019458000000000003,
+            "currency": "usd"
+          },
+          "line_item": null,
+          "project_id": "proj_agCqQ206tdx89FsoGUtjmduK",
+          "organization_id": "org-o09O7oQ76B4MatlTHXLjOOYz",
+          "project_name": "Junyoung Son",
+          "organization_name": "Korea University"
+        }
+      ],
+      "start_time_iso": "2025-08-04T00:00:00+00:00",
+      "end_time_iso": "2025-08-05T00:00:00+00:00"
+    },
+    {
+      "object": "bucket",
+      "start_time": 1754352000,
+      "end_time": 1754438400,
+      "results": [
+        {
+          "object": "organization.costs.result",
+          "amount": {
+            "value": 0.32721049999999996,
+            "currency": "usd"
+          },
+          "line_item": null,
+          "project_id": "proj_YzS04oYTOxwKura8SHWkkX3R",
+          "organization_id": "org-o09O7oQ76B4MatlTHXLjOOYz",
+          "project_name": "KULLM-RAG",
+          "organization_name": "Korea University"
+        },
+        {
+          "object": "organization.costs.result",
+          "amount": {
+            "value": 0.7927074999999999,
+            "currency": "usd"
+          },
+          "line_item": null,
+          "project_id": "proj_BEKs0PQEpVKRrqDPuJzzuyrp",
+          "organization_id": "org-o09O7oQ76B4MatlTHXLjOOYz",
+          "project_name": "KT Unlearning",
+          "organization_name": "Korea University"
+        },
+        {
+          "object": "organization.costs.result",
+          "amount": {
+            "value": 0.40983594999999995,
+            "currency": "usd"
+          },
+          "line_item": null,
+          "project_id": "proj_9AdrrgJKc2vqJlZq3HU7gsTD",
+          "organization_id": "org-o09O7oQ76B4MatlTHXLjOOYz",
+          "project_name": "HIAI",
+          "organization_name": "Korea University"
+        },
+        {
+          "object": "organization.costs.result",
+          "amount": {
+            "value": 0.0084675,
+            "currency": "usd"
+          },
+          "line_item": null,
+          "project_id": "proj_wYulyN6LGWYHIl9klig3PzSS",
+          "organization_id": "org-o09O7oQ76B4MatlTHXLjOOYz",
+          "project_name": "Hyeonseok Moon",
+          "organization_name": "Korea University"
+        },
+        {
+          "object": "organization.costs.result",
+          "amount": {
+            "value": 0.159976,
+            "currency": "usd"
+          },
+          "line_item": null,
+          "project_id": "proj_agCqQ206tdx89FsoGUtjmduK",
+          "organization_id": "org-o09O7oQ76B4MatlTHXLjOOYz",
+          "project_name": "Junyoung Son",
+          "organization_name": "Korea University"
+        }
+      ],
+      "start_time_iso": "2025-08-05T00:00:00+00:00",
+      "end_time_iso": "2025-08-06T00:00:00+00:00"
+    },
+    {
+      "object": "bucket",
+      "start_time": 1754438400,
+      "end_time": 1754524800,
+      "results": [
+        {
+          "object": "organization.costs.result",
+          "amount": {
+            "value": 0.856733,
+            "currency": "usd"
+          },
+          "line_item": null,
+          "project_id": "proj_agCqQ206tdx89FsoGUtjmduK",
+          "organization_id": "org-o09O7oQ76B4MatlTHXLjOOYz",
+          "project_name": "Junyoung Son",
+          "organization_name": "Korea University"
+        },
+        {
+          "object": "organization.costs.result",
+          "amount": {
+            "value": 0.023212,
+            "currency": "usd"
+          },
+          "line_item": null,
+          "project_id": "proj_CIvqhKIdpvn95jz1KmvgUwYQ",
+          "organization_id": "org-o09O7oQ76B4MatlTHXLjOOYz",
+          "project_name": "Seungyoon Lee",
+          "organization_name": "Korea University"
+        },
+        {
+          "object": "organization.costs.result",
+          "amount": {
+            "value": 14.3367433,
+            "currency": "usd"
+          },
+          "line_item": null,
+          "project_id": "proj_YzS04oYTOxwKura8SHWkkX3R",
+          "organization_id": "org-o09O7oQ76B4MatlTHXLjOOYz",
+          "project_name": "KULLM-RAG",
+          "organization_name": "Korea University"
+        },
+        {
+          "object": "organization.costs.result",
+          "amount": {
+            "value": 0.37469750000000007,
+            "currency": "usd"
+          },
+          "line_item": null,
+          "project_id": "proj_9AdrrgJKc2vqJlZq3HU7gsTD",
+          "organization_id": "org-o09O7oQ76B4MatlTHXLjOOYz",
+          "project_name": "HIAI",
+          "organization_name": "Korea University"
+        },
+        {
+          "object": "organization.costs.result",
+          "amount": {
+            "value": 0.009122100000000001,
+            "currency": "usd"
+          },
+          "line_item": null,
+          "project_id": "proj_EUvQcYDfebHpDFvYEptMvQny",
+          "organization_id": "org-o09O7oQ76B4MatlTHXLjOOYz",
+          "project_name": "Jungseob Lee",
+          "organization_name": "Korea University"
+        },
+        {
+          "object": "organization.costs.result",
+          "amount": {
+            "value": 1.3840739,
+            "currency": "usd"
+          },
+          "line_item": null,
+          "project_id": "proj_JABkBgJQyDNxt6kInXMs0wkt",
+          "organization_id": "org-o09O7oQ76B4MatlTHXLjOOYz",
+          "project_name": "Gyuho Shim",
+          "organization_name": "Korea University"
+        },
+        {
+          "object": "organization.costs.result",
+          "amount": {
+            "value": 0.0112865,
+            "currency": "usd"
+          },
+          "line_item": null,
+          "project_id": "proj_rfFxJhYcOifcD8PYZbZ3iupa",
+          "organization_id": "org-o09O7oQ76B4MatlTHXLjOOYz",
+          "project_name": "Jaewook Lee",
+          "organization_name": "Korea University"
+        }
+      ],
+      "start_time_iso": "2025-08-06T00:00:00+00:00",
+      "end_time_iso": "2025-08-07T00:00:00+00:00"
+    },
+    {
+      "object": "bucket",
+      "start_time": 1754524800,
+      "end_time": 1754611200,
+      "results": [
+        {
+          "object": "organization.costs.result",
+          "amount": {
+            "value": 0.475811,
+            "currency": "usd"
+          },
+          "line_item": null,
+          "project_id": "proj_agCqQ206tdx89FsoGUtjmduK",
+          "organization_id": "org-o09O7oQ76B4MatlTHXLjOOYz",
+          "project_name": "Junyoung Son",
+          "organization_name": "Korea University"
+        },
+        {
+          "object": "organization.costs.result",
+          "amount": {
+            "value": 0.9539771,
+            "currency": "usd"
+          },
+          "line_item": null,
+          "project_id": "proj_YzS04oYTOxwKura8SHWkkX3R",
+          "organization_id": "org-o09O7oQ76B4MatlTHXLjOOYz",
+          "project_name": "KULLM-RAG",
+          "organization_name": "Korea University"
+        },
+        {
+          "object": "organization.costs.result",
+          "amount": {
+            "value": 2.7638403499999997,
+            "currency": "usd"
+          },
+          "line_item": null,
+          "project_id": "proj_9AdrrgJKc2vqJlZq3HU7gsTD",
+          "organization_id": "org-o09O7oQ76B4MatlTHXLjOOYz",
+          "project_name": "HIAI",
+          "organization_name": "Korea University"
+        },
+        {
+          "object": "organization.costs.result",
+          "amount": {
+            "value": 1.3632513,
+            "currency": "usd"
+          },
+          "line_item": null,
+          "project_id": "proj_JABkBgJQyDNxt6kInXMs0wkt",
+          "organization_id": "org-o09O7oQ76B4MatlTHXLjOOYz",
+          "project_name": "Gyuho Shim",
+          "organization_name": "Korea University"
+        }
+      ],
+      "start_time_iso": "2025-08-07T00:00:00+00:00",
+      "end_time_iso": "2025-08-08T00:00:00+00:00"
+    },
+    {
+      "object": "bucket",
+      "start_time": 1754611200,
+      "end_time": 1754697600,
+      "results": [
+        {
+          "object": "organization.costs.result",
+          "amount": {
+            "value": 0.110306625,
+            "currency": "usd"
+          },
+          "line_item": null,
+          "project_id": "proj_JABkBgJQyDNxt6kInXMs0wkt",
+          "organization_id": "org-o09O7oQ76B4MatlTHXLjOOYz",
+          "project_name": "Gyuho Shim",
+          "organization_name": "Korea University"
+        },
+        {
+          "object": "organization.costs.result",
+          "amount": {
+            "value": 2.85754009,
+            "currency": "usd"
+          },
+          "line_item": null,
+          "project_id": "proj_YzS04oYTOxwKura8SHWkkX3R",
+          "organization_id": "org-o09O7oQ76B4MatlTHXLjOOYz",
+          "project_name": "KULLM-RAG",
+          "organization_name": "Korea University"
+        },
+        {
+          "object": "organization.costs.result",
+          "amount": {
+            "value": 0.028469200000000004,
+            "currency": "usd"
+          },
+          "line_item": null,
+          "project_id": "proj_9AdrrgJKc2vqJlZq3HU7gsTD",
+          "organization_id": "org-o09O7oQ76B4MatlTHXLjOOYz",
+          "project_name": "HIAI",
+          "organization_name": "Korea University"
+        },
+        {
+          "object": "organization.costs.result",
+          "amount": {
+            "value": 0.026474,
+            "currency": "usd"
+          },
+          "line_item": null,
+          "project_id": "proj_agCqQ206tdx89FsoGUtjmduK",
+          "organization_id": "org-o09O7oQ76B4MatlTHXLjOOYz",
+          "project_name": "Junyoung Son",
+          "organization_name": "Korea University"
+        }
+      ],
+      "start_time_iso": "2025-08-08T00:00:00+00:00",
+      "end_time_iso": "2025-08-09T00:00:00+00:00"
+    },
+    {
+      "object": "bucket",
+      "start_time": 1754697600,
+      "end_time": 1754784000,
+      "results": [
+        {
+          "object": "organization.costs.result",
+          "amount": {
+            "value": 1.91583325,
+            "currency": "usd"
+          },
+          "line_item": null,
+          "project_id": "proj_YzS04oYTOxwKura8SHWkkX3R",
+          "organization_id": "org-o09O7oQ76B4MatlTHXLjOOYz",
+          "project_name": "KULLM-RAG",
+          "organization_name": "Korea University"
+        },
+        {
+          "object": "organization.costs.result",
+          "amount": {
+            "value": 1.0862574999999999,
+            "currency": "usd"
+          },
+          "line_item": null,
+          "project_id": "proj_9AdrrgJKc2vqJlZq3HU7gsTD",
+          "organization_id": "org-o09O7oQ76B4MatlTHXLjOOYz",
+          "project_name": "HIAI",
+          "organization_name": "Korea University"
+        }
+      ],
+      "start_time_iso": "2025-08-09T00:00:00+00:00",
+      "end_time_iso": "2025-08-10T00:00:00+00:00"
+    },
+    {
+      "object": "bucket",
+      "start_time": 1754784000,
+      "end_time": 1754870400,
+      "results": [
+        {
+          "object": "organization.costs.result",
+          "amount": {
+            "value": 2.093328,
+            "currency": "usd"
+          },
+          "line_item": null,
+          "project_id": "proj_YzS04oYTOxwKura8SHWkkX3R",
+          "organization_id": "org-o09O7oQ76B4MatlTHXLjOOYz",
+          "project_name": "KULLM-RAG",
+          "organization_name": "Korea University"
+        },
+        {
+          "object": "organization.costs.result",
+          "amount": {
+            "value": 1.6166325000000001,
+            "currency": "usd"
+          },
+          "line_item": null,
+          "project_id": "proj_9AdrrgJKc2vqJlZq3HU7gsTD",
+          "organization_id": "org-o09O7oQ76B4MatlTHXLjOOYz",
+          "project_name": "HIAI",
+          "organization_name": "Korea University"
+        }
+      ],
+      "start_time_iso": "2025-08-10T00:00:00+00:00",
+      "end_time_iso": "2025-08-11T00:00:00+00:00"
+    },
+    {
+      "object": "bucket",
+      "start_time": 1754870400,
+      "end_time": 1754956800,
+      "results": [
+        {
+          "object": "organization.costs.result",
+          "amount": {
+            "value": 0.7094109999999999,
+            "currency": "usd"
+          },
+          "line_item": null,
+          "project_id": "proj_agCqQ206tdx89FsoGUtjmduK",
+          "organization_id": "org-o09O7oQ76B4MatlTHXLjOOYz",
+          "project_name": "Junyoung Son",
+          "organization_name": "Korea University"
+        },
+        {
+          "object": "organization.costs.result",
+          "amount": {
+            "value": 0.0393175,
+            "currency": "usd"
+          },
+          "line_item": null,
+          "project_id": "proj_CIvqhKIdpvn95jz1KmvgUwYQ",
+          "organization_id": "org-o09O7oQ76B4MatlTHXLjOOYz",
+          "project_name": "Seungyoon Lee",
+          "organization_name": "Korea University"
+        },
+        {
+          "object": "organization.costs.result",
+          "amount": {
+            "value": 0.32303750000000003,
+            "currency": "usd"
+          },
+          "line_item": null,
+          "project_id": "proj_YzS04oYTOxwKura8SHWkkX3R",
+          "organization_id": "org-o09O7oQ76B4MatlTHXLjOOYz",
+          "project_name": "KULLM-RAG",
+          "organization_name": "Korea University"
+        },
+        {
+          "object": "organization.costs.result",
+          "amount": {
+            "value": 1.0322475,
+            "currency": "usd"
+          },
+          "line_item": null,
+          "project_id": "proj_9AdrrgJKc2vqJlZq3HU7gsTD",
+          "organization_id": "org-o09O7oQ76B4MatlTHXLjOOYz",
+          "project_name": "HIAI",
+          "organization_name": "Korea University"
+        },
+        {
+          "object": "organization.costs.result",
+          "amount": {
+            "value": 0.0044775,
+            "currency": "usd"
+          },
+          "line_item": null,
+          "project_id": "proj_wYulyN6LGWYHIl9klig3PzSS",
+          "organization_id": "org-o09O7oQ76B4MatlTHXLjOOYz",
+          "project_name": "Hyeonseok Moon",
+          "organization_name": "Korea University"
+        }
+      ],
+      "start_time_iso": "2025-08-11T00:00:00+00:00",
+      "end_time_iso": "2025-08-12T00:00:00+00:00"
+    },
+    {
+      "object": "bucket",
+      "start_time": 1754956800,
+      "end_time": 1755043200,
+      "results": [
+        {
+          "object": "organization.costs.result",
+          "amount": {
+            "value": 0.01663,
+            "currency": "usd"
+          },
+          "line_item": null,
+          "project_id": "proj_9AdrrgJKc2vqJlZq3HU7gsTD",
+          "organization_id": "org-o09O7oQ76B4MatlTHXLjOOYz",
+          "project_name": "HIAI",
+          "organization_name": "Korea University"
+        }
+      ],
+      "start_time_iso": "2025-08-12T00:00:00+00:00",
+      "end_time_iso": "2025-08-13T00:00:00+00:00"
+    }
+  ]
+}

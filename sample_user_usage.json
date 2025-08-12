@@ -1,0 +1,81 @@
+{
+  "data": [
+    {
+      "start_time": 1709251200,
+      "end_time": 1709337599,
+      "results": [
+        {
+          "user_id": "user-abc123def456",
+          "project_id": "proj_example1",
+          "api_key_id": "key_123",
+          "model": "gpt-4o-mini",
+          "requests": 50,
+          "context_tokens_total": 25000,
+          "generated_tokens_total": 5000,
+          "total_tokens": 30000,
+          "context_tokens_cost_usd": "0.050000",
+          "generated_tokens_cost_usd": "0.030000",
+          "cost_usd": "0.080000"
+        },
+        {
+          "user_id": "user-xyz789abc123",
+          "project_id": "proj_example1", 
+          "api_key_id": "key_123",
+          "model": "gpt-4",
+          "requests": 25,
+          "context_tokens_total": 15000,
+          "generated_tokens_total": 3000,
+          "total_tokens": 18000,
+          "context_tokens_cost_usd": "0.450000",
+          "generated_tokens_cost_usd": "0.180000", 
+          "cost_usd": "0.630000"
+        },
+        {
+          "user_id": "user-mno456pqr789",
+          "project_id": "proj_example2",
+          "api_key_id": "key_456",
+          "model": "gpt-4o-mini",
+          "requests": 75,
+          "context_tokens_total": 30000,
+          "generated_tokens_total": 6000,
+          "total_tokens": 36000,
+          "context_tokens_cost_usd": "0.060000",
+          "generated_tokens_cost_usd": "0.036000",
+          "cost_usd": "0.096000"
+        }
+      ]
+    },
+    {
+      "start_time": 1709337600,
+      "end_time": 1709423999,
+      "results": [
+        {
+          "user_id": "user-abc123def456",
+          "project_id": "proj_example1",
+          "api_key_id": "key_123", 
+          "model": "gpt-4o",
+          "requests": 20,
+          "context_tokens_total": 12000,
+          "generated_tokens_total": 2400,
+          "total_tokens": 14400,
+          "context_tokens_cost_usd": "0.060000",
+          "generated_tokens_cost_usd": "0.048000",
+          "cost_usd": "0.108000"
+        },
+        {
+          "user_id": "user-xyz789abc123",
+          "project_id": "proj_example1",
+          "api_key_id": "key_123",
+          "model": "gpt-4o-mini",
+          "requests": 100,
+          "context_tokens_total": 45000,
+          "generated_tokens_total": 9000,
+          "total_tokens": 54000,
+          "context_tokens_cost_usd": "0.090000",
+          "generated_tokens_cost_usd": "0.054000",
+          "cost_usd": "0.144000"
+        }
+      ]
+    }
+  ]
+}

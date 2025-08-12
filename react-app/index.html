@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/openai-icon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#007AFF" />
+    <meta name="description" content="OpenAI API 사용량 추적 및 분석 도구 - Apple 디자인 시스템" />
+    <title>OpenAI Usage Tracker</title>
+    
+    <!-- Apple-style meta tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="OpenAI Tracker" />
+    
+    <!-- Preconnect for better performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- Font imports -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    
+    <!-- Apple system font loading -->
+    <style>
+      /* Apple Design System CSS Variables */
+      :root {
+        --apple-blue: #007AFF;
+        --apple-blue-hover: #0056CC;
+        --apple-green: #34C759;
+        --apple-red: #FF3B30;
+        --apple-orange: #FF9500;
+        
+        /* Light theme */
+        --bg-primary: #FFFFFF;
+        --bg-secondary: #F2F2F7;
+        --bg-tertiary: #FFFFFF;
+        --text-primary: #1C1C1E;
+        --text-secondary: #8E8E93;
+        --text-tertiary: #AEAEB2;
+        --border-color: #E5E5EA;
+      }
+      
+      /* Dark theme */
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg-primary: #1C1C1E;
+          --bg-secondary: #2C2C2E;
+          --bg-tertiary: #3A3A3C;
+          --text-primary: #FFFFFF;
+          --text-secondary: #AEAEB2;
+          --text-tertiary: #8E8E93;
+          --border-color: #48484A;
+        }
+      }
+      
+      /* Loading screen */
+      #loading-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: var(--bg-primary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        z-index: 9999;
+        transition: opacity 0.5s ease-out;
+      }
+      
+      .loading-spinner {
+        width: 32px;
+        height: 32px;
+        border: 3px solid var(--text-tertiary);
+        border-top: 3px solid var(--apple-blue);
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+      
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      
+      .loading-text {
+        margin-top: 16px;
+        color: var(--text-secondary);
+        font-family: 'SF Pro Text', 'SF Pro Display', 'Apple SD Gothic Neo', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Helvetica', Arial, sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root">
+      <!-- Loading screen -->
+      <div id="loading-screen">
+        <div class="loading-spinner"></div>
+        <div class="loading-text">OpenAI Usage Tracker 로딩 중...</div>
+      </div>
+    </div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

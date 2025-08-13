@@ -396,12 +396,12 @@ export const RateLimits: React.FC = () => {
   // Check if project is over budget
   const isProjectOverBudget = (projectId: string): boolean => {
     const budget = budgets[projectId];
-    if (!budget || !processedData || !processedData.byProject) return false;
+    if (!budget || !processedData || !processedData.usageByProject) return false;
     
-    const projectUsage = processedData.byProject.find(p => p.id === projectId);
+    const projectUsage = processedData.usageByProject.find(p => p.projectId === projectId);
     if (!projectUsage) return false;
     
-    return projectUsage.totalCost > budget.amount;
+    return projectUsage.cost > budget.amount;
   };
 
   // Get filtered project list based on toggle
